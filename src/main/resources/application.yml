@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${REVATURE_DB_URL}/HouseDuties
+    password: ${REVATURE_DB_PASSWORD}
+    username: orkundb
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate: 
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          lob:
+            non_contextual_creation: true    
+            
+server:
+  port: 8005
