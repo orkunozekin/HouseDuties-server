@@ -27,7 +27,6 @@ public class Household {
 	private String name;
 
 	@OneToMany(mappedBy = "household", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnore
 	private Set<User> users;
 
 	@OneToMany(mappedBy = "householdOfTodo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

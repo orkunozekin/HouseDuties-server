@@ -40,7 +40,7 @@ public class User implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "household_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Household household;
 
 

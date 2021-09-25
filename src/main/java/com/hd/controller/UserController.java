@@ -19,53 +19,45 @@ import com.hd.repository.UserRepository;
 @RequestMapping("/user")
 @CrossOrigin(origins = "*")
 public class UserController {
-	
+
 	private UserRepository uRepo;
-	
+
 	@GetMapping("/getAllUsers")
 	public List<User> getAllUsers() {
 		return uRepo.findAll();
 	}
 	
-	//checks to see if this email already exists, if it doesn't, returns true.
-	@PostMapping("/checkEmail")
-	public boolean checkEmail(@RequestParam String email) {
-		User user = uRepo.findByEmail(email);
-		return user != null;
-	}
-	
+
 	@PostMapping("/createNewUser")
-	public ResponseEntity<User> createNewUser(@RequestBody User newUser) {
+	public ResponseEntity<String> createNewUser(@RequestBody User newUser) {
 		System.out.println(newUser);
-		if(newUser.getEmail().length() > 0) {
+		if(newUser.getEmail().length() > 0 && uRepo.findByEmail(newUser.getEmail()) == null) {
 			uRepo.save(newUser);
 			System.out.println("Successfully created");
-			return ResponseEntity.accepted().body(newUser);
+			return ResponseEntity.accepted().body("Success");
 		}
-		return (ResponseEntity<User>) ResponseEntity.badRequest();
+		return ResponseEntity.badRequest().body("Bad request");
 	}
-	
+
 	@PostMapping("/login")
 	public User loginUser(@RequestParam String email) {
 		System.out.println(email);
 		User loggedInUser = uRepo.findByEmail(email);
 		System.out.println(loggedInUser);
-		if(loggedInUser != null) {
+		if (loggedInUser != null) {
 			return loggedInUser;
 		}
 		return null;
 	}
-	
-	
-	
-	//constructor
-	
+
+	// constructor
+
 	@Autowired
 	public UserController(UserRepository uRepo) {
 		this.uRepo = uRepo;
 	}
-	
-	//getters&setters
+
+	// getters&setters
 	public UserRepository getuRepo() {
 		return uRepo;
 	}
@@ -73,8 +65,5 @@ public class UserController {
 	public void setuRepo(UserRepository uRepo) {
 		this.uRepo = uRepo;
 	}
-	
-	
-	
-	
+
 }
