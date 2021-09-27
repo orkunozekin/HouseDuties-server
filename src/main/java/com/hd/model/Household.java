@@ -26,7 +26,7 @@ public class Household {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@OneToMany(mappedBy = "household", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "household", fetch = FetchType.EAGER)
 	private Set<User> users;
 
 	@OneToMany(mappedBy = "householdOfTodo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

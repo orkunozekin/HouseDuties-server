@@ -41,7 +41,7 @@ public class Todo {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "household_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Household householdOfTodo;
 	
 	

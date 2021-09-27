@@ -30,7 +30,7 @@ public class HouseholdController {
 	}
 	
 	@PostMapping("/newHousehold")
-	public String createNewHousehold(@RequestBody Household household) {
+	public Household createNewHousehold(@RequestBody Household household) {
 		System.out.println("household name: " + household.getName());
 		System.out.println("household users: " + household.getUsers());
 		if(household.getName() != null) {
@@ -38,10 +38,14 @@ public class HouseholdController {
 //			User[] users = usersSet.toArray(new User[usersSet.size()]);
 //			System.out.println("first user: " + users[0]);
 //			uRepo.save(users[0]);
+			System.out.println("Household owner: " + household.getUsers().toArray()[0]);
+			User householdOwner = (User) household.getUsers().toArray()[0];
+			householdOwner.setHousehold(household);
 			hr.save(household);
-			return "Household has been created!";
+			uRepo.save(householdOwner);
+			return household;
 		} else {
-			return "Failed to create household!";
+			return null;
 		}
 	}
 	
