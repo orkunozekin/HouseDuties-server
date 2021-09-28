@@ -29,27 +29,18 @@ public class Household {
 	@OneToMany(mappedBy = "household", fetch = FetchType.EAGER)
 	private Set<User> users;
 
-	@OneToMany(mappedBy = "householdOfTodo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<Todo> todos;
+	@OneToMany(mappedBy = "household", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Task> tasks;
 
 	public Household() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Household(long id, String name, Set<User> users, Set<Todo> todos) {
+	public Household(long id, String name, Set<User> users, Set<Task> tasks) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.users = users;
-		this.todos = todos;
-	}
-	
-
-	public Household(String name, Set<User> users, Set<Todo> todos) {
-		super();
-		this.name = name;
-		this.users = users;
-		this.todos = todos;
+		this.tasks = tasks;
 	}
 
 	public long getId() {
@@ -76,19 +67,19 @@ public class Household {
 		this.users = users;
 	}
 
-	public Set<Todo> getTodos() {
-		return todos;
+	public Set<Task> getTasks() {
+		return tasks;
 	}
 
-	public void setTodos(Set<Todo> todos) {
-		this.todos = todos;
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
 	}
 
 	@Override
 	public String toString() {
-		return "Household [id=" + id + ", name=" + name + ", users=" + users + ", todos=" + todos + "]";
+		return "Household [id=" + id + ", name=" + name + ", users=" + users + ", tasks=" + tasks + "]";
 	}
-	
+
 	
 	
 	

@@ -36,7 +36,7 @@ public class User implements Serializable {
 	private String password;
 
 	@OneToMany(mappedBy = "userAssigned", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	private Set<Todo> todos;
+	private Set<Task> tasks;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "household_id")
@@ -47,27 +47,20 @@ public class User implements Serializable {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 
-	public User(long id, String email, String fullName, String password, Set<Todo> todos, Household household) {
+	public User(long id, String email, String fullName, String password, Set<Task> tasks, Household household) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.fullName = fullName;
 		this.password = password;
-		this.todos = todos;
+		this.tasks = tasks;
 		this.household = household;
 	}
 
-
-	public User(String email, String fullName, String password, Set<Todo> todos, Household household) {
-		super();
-		this.email = email;
-		this.fullName = fullName;
-		this.password = password;
-		this.todos = todos;
-		this.household = household;
-	}
 
 
 	public long getId() {
@@ -110,13 +103,13 @@ public class User implements Serializable {
 	}
 
 
-	public Set<Todo> getTodos() {
-		return todos;
+	public Set<Task> getTasks() {
+		return tasks;
 	}
 
 
-	public void setTodos(Set<Todo> todos) {
-		this.todos = todos;
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
 	}
 
 
@@ -130,11 +123,16 @@ public class User implements Serializable {
 	}
 
 
+
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", fullName=" + fullName + ", password=" + password + ", todos="
-				+ todos + ", household=" + household + "]";
+		return "User [id=" + id + ", email=" + email + ", fullName=" + fullName + ", password=" + password + ", tasks="
+				+ tasks + ", household=" + household + "]";
 	}
+
+	
+	
 
 	
 

@@ -15,8 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-@Table(name="todo")
-public class Todo {
+@Table(name="task")
+public class Task {
 	
 	@Id
 	@Column(name="id")
@@ -42,18 +42,18 @@ public class Todo {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "household_id")
 //	@JsonIgnore
-	private Household householdOfTodo;
+	private Household household;
 	
 	
 	
-	public Todo() {
+	public Task() {
 		// TODO Auto-generated constructor stub
 	}
 
 
 
-	public Todo(long id, String name, String type, boolean completed, User userAssigned, String completionDate,
-			Household householdOfTodo) {
+	public Task(long id, String name, String type, boolean completed, User userAssigned, String completionDate,
+			Household household) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -61,20 +61,7 @@ public class Todo {
 		this.completed = completed;
 		this.userAssigned = userAssigned;
 		this.completionDate = completionDate;
-		this.householdOfTodo = householdOfTodo;
-	}
-
-
-
-	public Todo(String name, String type, boolean completed, User userAssigned, String completionDate,
-			Household householdOfTodo) {
-		super();
-		this.name = name;
-		this.type = type;
-		this.completed = completed;
-		this.userAssigned = userAssigned;
-		this.completionDate = completionDate;
-		this.householdOfTodo = householdOfTodo;
+		this.household = household;
 	}
 
 
@@ -151,27 +138,25 @@ public class Todo {
 
 
 
-	public Household getHouseholdOfTodo() {
-		return householdOfTodo;
+	public Household getHousehold() {
+		return household;
 	}
 
 
 
-	public void setHouseholdOfTodo(Household householdOfTodo) {
-		this.householdOfTodo = householdOfTodo;
+	public void setHousehold(Household household) {
+		this.household = household;
 	}
 
 
 
 	@Override
 	public String toString() {
-		return "Todo [id=" + id + ", name=" + name + ", type=" + type + ", completed=" + completed + ", userAssigned="
-				+ userAssigned + ", completionDate=" + completionDate + ", householdOfTodo=" + householdOfTodo + "]";
+		return "Task [id=" + id + ", name=" + name + ", type=" + type + ", completed=" + completed + ", userAssigned="
+				+ userAssigned + ", completionDate=" + completionDate + ", household=" + household + "]";
 	}
 
 
-
-	
 	
 	
 }
